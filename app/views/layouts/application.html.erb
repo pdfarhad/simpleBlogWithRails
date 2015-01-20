@@ -17,7 +17,7 @@
     <ul>
       <li class="category">Website</li>
       <li><%= link_to "Blog", root_path %> </li>
-      <li>About Me</li>
+      <li><%= link_to 'About me ', about_path %></li>
       <li>Portfolio</li>
     </ul>
     <ul>
@@ -31,7 +31,12 @@
 </div>
 <div id="main_content">
   <div id="header">
-    <p> <%= link_to "All Posts ", root_path %> </p>
+    <% if current_page?(root_path) %>
+        <p> <%= link_to "All Posts ", root_path %> </p>
+        <% elseif current_page?(about_path) %>
+        <p> About</p>
+        <%= link_to "Back to All Posts", root_path %>
+    <% end %>
 
     <div class="buttons">
       <button class="button"><%= link_to "New Post", new_post_path %></button>
